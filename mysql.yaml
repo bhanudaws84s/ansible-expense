@@ -2,7 +2,7 @@
   hosts: mysql
   become: yes
   vars:
-    root_password: "ExpenseApp@2"
+    root_password: "ExpenseApp@1"
 
   tasks:
 
