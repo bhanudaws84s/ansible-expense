@@ -3,9 +3,9 @@
   become: yes
   vars:
     root_password: "ExpenseApp@1"
-    
+
   tasks:
-   - name: Install MySQL libraries
+  - name: Install MySQL libraries
     ansible.builtin.pip:
       name: PyMySQL
       executable: pip3.13
