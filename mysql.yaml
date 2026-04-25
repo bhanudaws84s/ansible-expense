@@ -1,6 +1,8 @@
 - name: configure MYSQL
   hosts: mysql
   become: yes
+  vars:
+    root_password: "ExpenseApp@1"
   tasks:
   - name: Installing MYSQL server
     ansible.builtin.package:
@@ -12,7 +14,18 @@
       name: mysqld
       state: started
       enabled: yes
-  
+
+  - name: Try to create database as root/nopassword first. If not allowed, pass the credentials
+    community.mysql.mysql_db:
+      login_user: root
+      login_password: "{{ root_password }}"
+      login_host: mysql.deaws82s.online
+      ignore_errors: true
+    register: mysql_info
+
+  - name: print the mysql_info
+    ansible.builtin.debug:
+      msg: "{{ mysql_info }}"
+
   - name: setting up root password
-    ansible.builtin.command: mysql_secure_installation --set-root-pass ExpenseApp@1
-    
+    ansible.builtin.command: mysql_secure_installation --set-root-pass "{{ root_password }}"
