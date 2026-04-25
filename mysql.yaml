@@ -5,10 +5,11 @@
     root_password: "ExpenseApp@1"
 
   tasks:
+
   - name: Install MySQL libraries
     ansible.builtin.pip:
       name: PyMySQL
-      executable: pip3.13
+      executable: pip3.9
     
     #   name: "{{ item }}"
     #   executable: pip3.9
