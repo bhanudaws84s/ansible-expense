@@ -16,7 +16,7 @@
       enabled: yes
 
   - name: Try to create database as root/nopassword first. If not allowed, pass the credentials
-    community.mysql.mysql_db:
+    community.mysql.mysql_info:
       login_user: root
       login_password: "{{ root_password }}"
       login_host: mysql.deaws82s.online
